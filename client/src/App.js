@@ -7,6 +7,8 @@ import Signin from './components/screens/Signin';
 import Profile from './components/screens/Profile';
 import Signup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
+import SubscribedUserPosts from './components/screens/SubscribesUserPosts';
+
 import {reducer,initialState} from './reducers/userReducer';
 import UserProfile from './components/screens/UserProfile';
 
@@ -44,6 +46,9 @@ const Routing = ()=>{
       </Route>
       <Route path="/profile/:userid">
         <UserProfile/>
+      </Route>
+      <Route path="/myfollowingpost">
+        <SubscribedUserPosts />
       </Route>
     </Switch>
   )
