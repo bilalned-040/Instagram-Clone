@@ -8,12 +8,13 @@ router.get('/allpost',requireLogin,(req,res)=>{
     Post.find()
     .populate("postedBy","_id name")
     .populate("comments.postedBy","_id name")
-    .then(posts=>{
+    .sort('-createdAt')
+    .then((posts)=>{
         res.json({posts})
-    })
-    .catch(err=>{
+    }).catch(err=>{
         console.log(err)
     })
+    
 })
 
 router.get('/getsubpost',requireLogin,(req,res)=>{
