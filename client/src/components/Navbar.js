@@ -1,16 +1,16 @@
 import React,{useContext,useRef,useEffect,useState} from 'react'
 import {Link ,useHistory} from 'react-router-dom'
 import {UserContext} from '../App'
-// import M from 'materialize-css'
+import M from 'materialize-css'
 const NavBar = ()=>{
-    // const  searchModal = useRef(null)
-    // const [search,setSearch] = useState('')
-    // const [userDetails,setUserDetails] = useState([])
+    const  searchModal = useRef(null)
+    const [search,setSearch] = useState('')
+    const [userDetails,setUserDetails] = useState([])
      const {state,dispatch} = useContext(UserContext)
      const history = useHistory()
-    //  useEffect(()=>{
-    //      M.Modal.init(searchModal.current)
-    //  },[])
+     useEffect(()=>{
+         M.Modal.init(searchModal.current)
+     },[])
      const renderList = ()=>{
        if(state){
            return [
@@ -42,21 +42,21 @@ const NavBar = ()=>{
      }
 
 
-    //  const fetchUsers = (query)=>{
-    //     setSearch(query)
-    //     fetch('/search-users',{
-    //       method:"post",
-    //       headers:{
-    //         "Content-Type":"application/json"
-    //       },
-    //       body:JSON.stringify({
-    //         query
-    //       })
-    //     }).then(res=>res.json())
-    //     .then(results=>{
-    //       setUserDetails(results.user)
-    //     })
-    //  }
+     const fetchUsers = (query)=>{
+        setSearch(query)
+        fetch('/search-users',{
+          method:"post",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            query
+          })
+        }).then(res=>res.json())
+        .then(results=>{
+          setUserDetails(results.user)
+        })
+     }
     return(
         <nav>
         <div className="nav-wrapper white">
@@ -66,7 +66,7 @@ const NavBar = ()=>{
   
           </ul>
         </div>
-        {/* <div id="modal1" class="modal" ref={searchModal} style={{color:"black"}}>
+        <div id="modal1" class="modal" ref={searchModal} style={{color:"black"}}>
           <div className="modal-content">
           <input
             type="text"
@@ -87,7 +87,7 @@ const NavBar = ()=>{
           <div className="modal-footer">
             <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>
           </div>
-        </div> */}
+        </div>
       </nav>
     )
 }
